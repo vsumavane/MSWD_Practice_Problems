@@ -1,21 +1,24 @@
 const express = require('express');
+const router = express.Router();
 
-const cartRouter = express.Router();
+// Sample shopping cart
+let shoppingCart = [];
 
-cartRouter.get('/', (req, res) => {
-    res.send('GET request to the cart');
+// Route to get the contents of the shopping cart
+router.get('/', (req, res) => {
+    res.json(shoppingCart);
 });
 
-cartRouter.post('/', (req, res) => {
-    res.send('POST request to the cart');
+// Route to add an item to the shopping cart
+router.post('/', express.json(), (req, res) => {
+    const { id, name, price, qty } = req.body;
+
+    if (id && name && price && qty) {
+        shoppingCart.push({ id, name, price, qty });
+        res.status(200).send('Item added to cart');
+    } else {
+        res.status(400).send('Please provide all the required fields');
+    }
 });
 
-cartRouter.put('/', (req, res) => {
-    res.send('PUT request to the cart');
-});
-
-cartRouter.delete('/', (req, res) => {
-    res.send('DELETE request to the cart');
-});
-
-module.exports = cartRouter;
+module.exports = router;
