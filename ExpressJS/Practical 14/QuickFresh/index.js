@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+
 
 app.listen(9000, function () {
     console.log('Server running on http://localhost:9000')
@@ -76,6 +78,8 @@ app.post('/cart', express.json(), function (req, res) {
     }
 });
 
+app.use('/assets', express.static(path.join(__dirname, 'public')));
+
 app.use((req, res, next) => {
     const datetime = new Date().toISOString();
     const method = req.method;
@@ -92,5 +96,3 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Sorry! Something went wrong');
 });
-
-app.use('/assets', express.static('public'));
