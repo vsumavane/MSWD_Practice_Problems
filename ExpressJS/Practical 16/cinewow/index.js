@@ -85,35 +85,27 @@ app.get('/api/v1/getMovies', async (req, res) => {
     }
   });  
   
-
-// Get a specific movie by ID
 app.get('/api/v1/getMovie/:movieID', (req, res) => {
   const { movieID } = req.params;
   // Your implementation to get a movie by ID from the database
 });
 
-// Add a new movie
 app.post('/api/v1/addMovie', (req, res) => {
   const movieData = req.body;
   // Your implementation to add a new movie to the database
 });
 
-// Update a movie by ID
 app.patch('/api/v1/updateMovie/:movieID', (req, res) => {
   const { movieID } = req.params;
   const updatedFields = req.body;
   // Your implementation to update a movie by ID in the database
 });
 
-// Delete a movie by ID
 app.delete('/api/v1/deleteMovie/:movieID', (req, res) => {
   const { movieID } = req.params;
   // Your implementation to delete a movie by ID from the database
 });
 
-// Define a route for movie statistics
-// Define a route for movie statistics with additional computation
-// Define a route for movie statistics with additional sorting
 app.get('/api/v1/movieStats', async (req, res) => {
     try {
       // Define the aggregation pipeline
